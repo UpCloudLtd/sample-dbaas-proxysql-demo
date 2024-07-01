@@ -1,5 +1,5 @@
 output "sqlproxy_sdn_ip" {
-  value = upcloud_server.sql-proxy-server.network_interface[2].ip_address
+  value = upcloud_server.sql-proxy-server.network_interface[1].ip_address
 }
 
 output "proxy_ip_addresses" {

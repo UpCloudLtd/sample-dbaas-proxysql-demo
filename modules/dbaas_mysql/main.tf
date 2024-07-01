@@ -1,7 +1,16 @@
+
 resource "upcloud_managed_database_mysql" "dbaas_mysql" {
-  name = "mysql-demo-dbaas"
-  plan = var.dbaas_plan
-  zone = var.zone
+  name  = "mysql-demo-dbaas"
+  title = "mysql-demo-dbaas"
+  plan  = var.dbaas_plan
+  zone  = var.zone
+  network {
+    family = "IPv4"
+    name   = "mysql-backend-network"
+    type   = "private"
+    uuid   = var.private_sdn_network_be
+  }
+
 }
 resource "upcloud_managed_database_logical_database" "testdb" {
   service = upcloud_managed_database_mysql.dbaas_mysql.id

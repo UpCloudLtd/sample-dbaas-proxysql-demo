@@ -3,6 +3,11 @@ variable "private_sdn_network" {
   default = ""
 }
 
+variable "private_sdn_network_be" {
+  type    = string
+  default = ""
+}
+
 variable "zone" {
   type = string
 }

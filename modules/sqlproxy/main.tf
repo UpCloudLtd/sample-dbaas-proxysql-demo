@@ -3,7 +3,7 @@ resource "upcloud_server" "sql-proxy-server" {
   zone       = var.zone
   plan       = var.sqlproxy_plan
   metadata   = true
-  depends_on = [var.private_sdn_network, var.dbaas_mysql_hosts]
+  depends_on = [var.private_sdn_network, var.private_sdn_network_be, var.dbaas_mysql_hosts]
 
   template {
     storage = "Ubuntu Server 22.04 LTS (Jammy Jellyfish)"
@@ -14,11 +14,12 @@ resource "upcloud_server" "sql-proxy-server" {
     type = "public"
   }
   network_interface {
-    type = "utility"
+    type    = "private"
+    network = var.private_sdn_network
   }
   network_interface {
     type    = "private"
-    network = var.private_sdn_network
+    network = var.private_sdn_network_be
   }
   login {
     user = "root"
